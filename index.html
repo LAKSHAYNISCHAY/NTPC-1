@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Test Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { margin-bottom: 20px; }
+        .options { margin-left: 20px; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>MCQ Test</h1>
+    <form id="quizForm">
+        <!-- Sample Question 1 -->
+        <div class="question">
+            <p>1. Who recently took over as the Secretary-General of NATO?</p>
+            <div class="options">
+                <input type="radio" name="q1" value="a"> (a) Jens Stoltenberg<br>
+                <input type="radio" name="q1" value="b"> (b) Mark Rutte<br>
+                <input type="radio" name="q1" value="c"> (c) Mahli Sahars<br>
+                <input type="radio" name="q1" value="d"> (d) None of these<br>
+            </div>
+        </div>
+        <!-- Sample Question 2 -->
+        <div class="question">
+            <p>2. How many temporary members are there in the United Nations Security Council?</p>
+            <div class="options">
+                <input type="radio" name="q2" value="a"> (a) 5<br>
+                <input type="radio" name="q2" value="b"> (b) 10<br>
+                <input type="radio" name="q2" value="c"> (c) 15<br>
+                <input type="radio" name="q2" value="d"> (d) 20<br>
+            </div>
+        </div>
+        <!-- Add more questions as needed -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Correct answers for the questions
+        const correctAnswers = ['b', 'b']; // Add correct answers for all questions
+
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            let score = 0;
+            correctAnswers.forEach((correct, index) => {
+                const userAnswer = formData.get('q' + (index + 1));
+                if (userAnswer === correct) {
+                    score += 1; // Correct answer
+                } else if (userAnswer) {
+                    score -= 1/3; // Incorrect answer
+                }
+                // Unanswered questions (no selection) do not affect the score
+            });
+            alert('Your score: ' + score.toFixed(2) + ' out of ' + correctAnswers.length);
+        });
+    </script>
+</body>
+</html>
