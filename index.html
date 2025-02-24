@@ -7,48 +7,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header Section -->
     <header>
         <h1>Constables GD in CAPFs, NIA, SSF, and Rifleman GD in Assam Rifles Examination 2021</h1>
         <p>Online Examination 2021</p>
         <div id="timer">Time Left: 90:00</div>
         <div class="profile-icon"></div>
+        <select id="language">
+            <option value="English">English</option>
+            <!-- Additional languages can be added here -->
+        </select>
     </header>
 
+    <!-- Section Selection -->
     <section id="section-selection">
         <h2>Select Section</h2>
         <label><input type="checkbox" name="section" value="part-a" checked> Part A: General Intelligence</label>
+        <label><input type="checkbox" name="section" value="part-b"> Part B: General Knowledge</label>
+        <label><input type="checkbox" name="section" value="part-c"> Part C: Elementary Mathematics</label>
+        <label><input type="checkbox" name="section" value="part-d"> Part D: English</label>
+        <label><input type="checkbox" name="section" value="part-e"> Part E: Hindi</label>
         <button id="attempt-btn">Attempt</button>
     </section>
 
+    <!-- Main Content Area -->
     <main>
         <div id="question-area">
-            <h3>Question No. 1</h3>
-            <p>Six offices (A, B, C, D, E, F) are allotted on a floor in two rows. B and E face north, A is north-facing and not next to D, D and F face diagonally, C is next to F and south-facing, E is north-facing. Which combination has south-facing offices?</p>
-            <label><input type="radio" name="answer" value="A"> A) FAE</label><br>
-            <label><input type="radio" name="answer" value="B"> B) ABC</label><br>
-            <label><input type="radio" name="answer" value="C"> C) FCA</label><br>
-            <label><input type="radio" name="answer" value="D"> D) BED</label><br>
-            <div class="control-buttons">
-                <button id="mark-review">Mark for Review & Next</button>
-                <button id="clear-response">Clear Response</button>
-                <button id="save-next">Save & Next</button>
-            </div>
+            <!-- Questions will be dynamically inserted here -->
         </div>
 
+        <!-- Sidebar/Question Palette -->
         <aside id="sidebar">
             <h3>Part A: General Intelligence</h3>
             <div id="question-nav">
-                <span class="current">1</span>
-                <span>2</span><span>3</span><span>4</span><span>5</span>
+                <!-- Question numbers will be dynamically generated -->
             </div>
-            <select>
-                <option>View in: English</option>
-            </select>
             <button id="submit-btn">Submit</button>
         </aside>
     </main>
 
-    <footer>Powered by aglasem.com</footer>
+    <!-- Footer -->
+    <footer>Powered by <span style="color: orange;">aglasem.com</span></footer>
+
+    <!-- JavaScript Files -->
+    <script src="questions.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
