@@ -1,57 +1,125 @@
-// Sample questions – you can add more questions as needed
+// NTPC सेट - 57 के उदाहरण प्रश्नों का एक नमूना सेट
+// (नोट: यहाँ केवल 10 प्रश्न दिए गए हैं। शेष प्रश्न भी इसी प्रारूप में जोड़े जा सकते हैं)
 const questions = [
   {
     id: 1,
-    text: "What is the full form of NTPC?",
+    text: "हाल ही में किसने 'NATO' के महासचिव का पदभार संभाला है ?",
     options: {
-      A: "National Thermal Power Corporation",
-      B: "National Transmission Power Company",
-      C: "National Transport Planning Council",
-      D: "None of the above"
+      A: "मोनिक मोकाल",
+      B: "माक़ रुटे",
+      C: "माइली साइरस",
+      D: "इनमें से कोई नहीं"
     },
-    answer: "A"
+    answer: "B"  // Answer Key: 1 (B)
   },
   {
     id: 2,
-    text: "Who conducted the exam?",
+    text: "संयुक्त राष्ट्र सुरक्षा परिषद में कितने अस्थायी सदस्य हैं?",
     options: {
-      A: "Wipro",
-      B: "TCS",
-      C: "Infosys",
-      D: "Tech Mahindra"
+      A: "5",
+      B: "10",
+      C: "15",
+      D: "20"
     },
-    answer: "B"
+    answer: "B"  // Answer Key: 2 (B)
   },
   {
     id: 3,
-    text: "Which programming language is used for web development?",
+    text: "निम्नलिखित में कौन ‘अनामिका’ कविता संग्रह के रचनाकार हैं?",
     options: {
-      A: "C++",
-      B: "Java",
-      C: "JavaScript",
-      D: "Python"
+      A: "रामनरेश त्रिपाठ",
+      B: "जयशंकर प्रसाद",
+      C: "सयू-कांत त्रिपाठ नीराला",
+      D: "सोहनलाल विश्वदी"
     },
-    answer: "C"
+    answer: "C"  // Answer Key: 3 (C)
   },
   {
     id: 4,
-    text: "Select the correct HTML tag for inserting a line break.",
+    text: "सात व्यक्ति, P, Q, R, S, T, U और V, एक सीधी पंक्ति में उत्तर की ओर उन्मुख होकर बैठे हैं। केवल दो व्यक्ति U के दायाँ बैठे हैं, केवल दो व्यक्ति R के बायाँ बैठे हैं, केवल दो व्यक्ति U और Q के मध्य बैठे हैं, केवल तीन व्यक्ति R और V के मध्य बैठे हैं, T, U का निकटतम पड़ोसी नहीं है, और S, U के दायाँ बैठा है। U के ठीक दायाँ कौन बैठा है?",
     options: {
-      A: "<br>",
-      B: "<break>",
-      C: "<lb>",
-      D: "<line>"
+      A: "P",
+      B: "S",
+      C: "R",
+      D: "T"
     },
-    answer: "A"
+    answer: "B"  // Answer Key: 4 (B)
+  },
+  {
+    id: 5,
+    text: "दी गई प्रतिक्रया से लुप्त संख्या का चयन करें।",
+    options: {
+      A: "50",
+      B: "94",
+      C: "25",
+      D: "47"
+    },
+    answer: "A"  // Answer Key: 5 (A)
+  },
+  {
+    id: 6,
+    text: "एक कूट भाषा में, 'DENT' को '51' तथा 'LOAD' को '40' के रूप में लिखा जाता है। तो उसी कूट भाषा में 'COST' को कैसे लिखा जाएगा?",
+    options: {
+      A: "65",
+      B: "62",
+      C: "75",
+      D: "57"
+    },
+    answer: "A"  // Answer Key: 6 (A)
+  },
+  {
+    id: 7,
+    text: "निम्नलिखित आकृतियों में कितने त्रिभुज हैं?",
+    options: {
+      A: "10",
+      B: "9",
+      C: "12",
+      D: "13"
+    },
+    answer: "A"  // Answer Key: 7 (A)
+  },
+  {
+    id: 8,
+    text: "हाल ही में साल 2025 में दृष्टिहीन महिला टी20 विश्व कप की मेजबानी कौन-सा देश करेगा?",
+    options: {
+      A: "नेपाल",
+      B: "भारत",
+      C: "श्रीलंका",
+      D: "इनमें से कोई नहीं"
+    },
+    answer: "B"  // Answer Key: 8 (B)
+  },
+  {
+    id: 9,
+    text: "यदि sec 3θ = cosec (4θ -15°) है, तो tan 3θ का मान ज्ञात कीजिए।",
+    options: {
+      A: "√3",
+      B: "-1",
+      C: "1",
+      D: ""  // खाली विकल्प
+    },
+    answer: "C"  // Answer Key: 9 (C)
+  },
+  {
+    id: 10,
+    text: "हाल ही में किस राज्य ने 'ग्रीन एनर्जी' के लिए नई नीति की घोषणा की है?",
+    options: {
+      A: "गोवा",
+      B: "गुजरात",
+      C: "राजस्थान",
+      D: "इनमें से कोई नहीं"
+    },
+    answer: "B"  // Answer Key: 10 (B)
   }
+  // आगे के प्रश्न इसी प्रारूप में जोड़े जा सकते हैं...
 ];
 
 let currentQuestionIndex = 0;
 const userAnswers = {};
 const flaggedQuestions = new Set();
 
-// Timer variables
-let totalTime = 30 * 60; // 30 minutes in seconds
+// Timer variables (30 मिनट)
+let totalTime = 30 * 60;
 let timerInterval;
 
 const timerDisplay = document.getElementById("timer");
@@ -66,7 +134,7 @@ const scoreDisplay = document.getElementById("scoreDisplay");
 const retryBtn = document.getElementById("retryBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// Initialize exam interface
+// परीक्षा इंटरफेस का प्रारंभ करें
 function initExam() {
   currentQuestionIndex = 0;
   for (const key in userAnswers) delete userAnswers[key];
@@ -76,11 +144,11 @@ function initExam() {
   document.querySelector("header").style.display = "block";
   renderQuestionNav();
   renderQuestion();
-  totalTime = 30 * 60; // reset timer
+  totalTime = 30 * 60; // टाइमर रीसेट
   startTimer();
 }
 
-// Timer countdown
+// टाइमर काउंटडाउन
 function startTimer() {
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
@@ -91,12 +159,12 @@ function startTimer() {
       totalTime--;
       let minutes = Math.floor(totalTime / 60);
       let seconds = totalTime % 60;
-      timerDisplay.textContent = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      timerDisplay.textContent = `समय: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
   }, 1000);
 }
 
-// Render navigation buttons for questions
+// प्रश्न नेविगेशन बटन रेंडर करें
 function renderQuestionNav() {
   questionNav.innerHTML = "";
   questions.forEach((q, index) => {
@@ -119,7 +187,7 @@ function updateNavActive() {
   });
 }
 
-// Render the current question
+// वर्तमान प्रश्न रेंडर करें
 function renderQuestion() {
   const currentQ = questions[currentQuestionIndex];
   let html = `<div class="question-text"><strong>Q${currentQ.id}.</strong> ${currentQ.text}</div><ul class="options">`;
@@ -135,7 +203,7 @@ function renderQuestion() {
   html += "</ul>";
   questionContainer.innerHTML = html;
 
-  // Attach change event to radio inputs
+  // रेडियो इनपुट पर चेंज इवेंट लगाएँ
   document.querySelectorAll("input[name='option']").forEach((input) => {
     input.addEventListener("change", (e) => {
       userAnswers[currentQ.id] = e.target.value;
@@ -143,7 +211,7 @@ function renderQuestion() {
   });
 }
 
-// Next & Previous button events
+// अगले एवं पिछले बटन की घटनाएँ
 nextBtn.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
@@ -159,46 +227,46 @@ prevBtn.addEventListener("click", () => {
   }
 });
 
-// Flag button event
+// फ्लैग बटन की घटना
 flagBtn.addEventListener("click", () => {
   const currentId = questions[currentQuestionIndex].id;
   if (flaggedQuestions.has(currentId)) {
     flaggedQuestions.delete(currentId);
-    flagBtn.textContent = "Flag";
+    flagBtn.textContent = "फ्लैग";
     flagBtn.style.backgroundColor = "#f59e0b";
   } else {
     flaggedQuestions.add(currentId);
-    flagBtn.textContent = "Flagged";
+    flagBtn.textContent = "फ्लैग्ड";
     flagBtn.style.backgroundColor = "#dc2626";
   }
 });
 
-// Submit button event
+// सबमिट बटन की घटना
 submitBtn.addEventListener("click", submitExam);
 
 function submitExam() {
   clearInterval(timerInterval);
-  // Calculate score
+  // स्कोर की गणना
   let score = 0;
   questions.forEach((q) => {
     if (userAnswers[q.id] === q.answer) {
       score++;
     }
   });
-  scoreDisplay.textContent = `Your Score: ${score} / ${questions.length}`;
+  scoreDisplay.textContent = `आपका स्कोर: ${score} / ${questions.length}`;
   resultSection.style.display = "block";
   document.querySelector(".container").style.display = "none";
   document.querySelector("header").style.display = "none";
 }
 
-// Retry button event
+// retry बटन की घटना
 retryBtn.addEventListener("click", initExam);
 
-// Download result event
+// परिणाम डाउनलोड करने की घटना
 downloadBtn.addEventListener("click", () => {
-  let resultText = `Exam Result\nYour Score: ${scoreDisplay.textContent}\n\nDetailed Responses:\n`;
+  let resultText = `परीक्षा परिणाम\n${scoreDisplay.textContent}\n\nविस्तृत प्रतिक्रियाएँ:\n`;
   questions.forEach((q) => {
-    resultText += `Q${q.id}: Your Answer: ${userAnswers[q.id] || "Not Answered"}, Correct Answer: ${q.answer}\n`;
+    resultText += `Q${q.id}: आपकी उत्तर: ${userAnswers[q.id] || "उत्तर नहीं दिया"}, सही उत्तर: ${q.answer}\n`;
   });
   const blob = new Blob([resultText], { type: "text/plain" });
   const a = document.createElement("a");
@@ -207,5 +275,5 @@ downloadBtn.addEventListener("click", () => {
   a.click();
 });
 
-// Start exam on page load
+// पेज लोड होने पर परीक्षा प्रारंभ करें
 window.onload = initExam;
