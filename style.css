@@ -1,22 +1,104 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-h1 {
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
     text-align: center;
+    position: relative;
 }
 
-.question {
-    margin-bottom: 20px;
+#timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2em;
 }
 
-.options {
-    margin-left: 20px;
+.profile-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
 }
 
-button {
-    padding: 10px 20px;
-    display: block;
-    margin: 20px auto;
+#section-selection {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+}
+
+#question-area {
+    flex: 3;
+    padding: 20px;
+}
+
+.control-buttons button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.control-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#sidebar {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+#question-nav span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+#question-nav .current {
+    background-color: red;
+}
+
+#question-nav .answered {
+    background-color: green;
+}
+
+#submit-btn {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
 }
