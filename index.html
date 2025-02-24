@@ -1,56 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Examination Platform</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTPC Exam Interface</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Constables GD in CAPFs, NIA, SSF, and Rifleman GD in Assam Rifles Examination 2021</h1>
-        <p>Online Examination 2021</p>
-        <div id="timer">Time Left: 90:00</div>
-        <div class="profile-icon"></div>
-        <select id="language">
-            <option value="English">English</option>
-            <!-- Additional languages can be added here -->
-        </select>
-    </header>
+  <header>
+    <h1>NTPC Online Test</h1>
+    <div class="timer" id="timer">Time: 30:00</div>
+  </header>
 
-    <!-- Section Selection -->
-    <section id="section-selection">
-        <h2>Select Section</h2>
-        <label><input type="checkbox" name="section" value="part-a" checked> Part A: General Intelligence</label>
-        <label><input type="checkbox" name="section" value="part-b"> Part B: General Knowledge</label>
-        <label><input type="checkbox" name="section" value="part-c"> Part C: Elementary Mathematics</label>
-        <label><input type="checkbox" name="section" value="part-d"> Part D: English</label>
-        <label><input type="checkbox" name="section" value="part-e"> Part E: Hindi</label>
-        <button id="attempt-btn">Attempt</button>
-    </section>
+  <div class="container">
+    <div class="main-content">
+      <div id="question-container">
+        <!-- Question text and options will be injected here -->
+      </div>
+      <div class="action-buttons">
+        <button id="prevBtn">Previous</button>
+        <button id="flagBtn" class="flag-btn">Flag</button>
+        <button id="nextBtn">Next</button>
+        <button id="submitBtn">Submit</button>
+      </div>
+    </div>
+    <div class="side-panel">
+      <h3 style="text-align: center; margin-bottom:10px;">Questions</h3>
+      <div id="question-nav">
+        <!-- Navigation numbers will be injected here -->
+      </div>
+    </div>
+  </div>
 
-    <!-- Main Content Area -->
-    <main>
-        <div id="question-area">
-            <!-- Questions will be dynamically inserted here -->
-        </div>
+  <div class="result-section" id="resultSection">
+    <h2>Exam Result</h2>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="result-buttons">
+      <button id="retryBtn">Retry</button>
+      <button id="downloadBtn">Download Result</button>
+    </div>
+  </div>
 
-        <!-- Sidebar/Question Palette -->
-        <aside id="sidebar">
-            <h3>Part A: General Intelligence</h3>
-            <div id="question-nav">
-                <!-- Question numbers will be dynamically generated -->
-            </div>
-            <button id="submit-btn">Submit</button>
-        </aside>
-    </main>
-
-    <!-- Footer -->
-    <footer>Powered by <span style="color: orange;">aglasem.com</span></footer>
-
-    <!-- JavaScript Files -->
-    <script src="questions.js"></script>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
