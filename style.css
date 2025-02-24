@@ -1,4 +1,4 @@
-/* Reset some default styling */
+/* Reset and base styling */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,6 +27,8 @@ header .timer {
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+/* Main container styling for desktop view */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -51,6 +53,12 @@ header .timer {
   max-height: 500px;
   overflow-y: auto;
 }
+.side-panel h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Question navigation buttons */
 .question-number {
   padding: 8px 12px;
   margin: 5px;
@@ -65,6 +73,8 @@ header .timer {
   background: #3b82f6;
   color: #fff;
 }
+
+/* Question text and options */
 .question-text {
   font-size: 1.1rem;
   margin-bottom: 15px;
@@ -79,6 +89,8 @@ header .timer {
 .options input[type="radio"] {
   margin-right: 10px;
 }
+
+/* Action buttons styling */
 .action-buttons {
   display: flex;
   justify-content: space-between;
@@ -101,6 +113,8 @@ header .timer {
 .flag-btn {
   background: #f59e0b;
 }
+
+/* Result section styling */
 .result-section {
   display: none;
   background: #fff;
@@ -121,12 +135,25 @@ header .timer {
 .result-buttons button {
   margin: 0 10px;
 }
+
+/* Responsive styling for mobile devices */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    padding: 10px;
   }
   .main-content {
     margin-right: 0;
     margin-bottom: 20px;
+  }
+  .side-panel {
+    max-height: none;
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-size: 1.8rem;
+  }
+  header .timer {
+    font-size: 1rem;
   }
 }
