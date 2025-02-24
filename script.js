@@ -1,112 +1,211 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    const totalQuestions = 24; // For Part A
-    let currentQuestion = 0;
-    let answers = new Array(totalQuestions).fill(null);
-    let statuses = new Array(totalQuestions).fill('not-visited');
+// Sample questions – you can add more questions as needed
+const questions = [
+  {
+    id: 1,
+    text: "What is the full form of NTPC?",
+    options: {
+      A: "National Thermal Power Corporation",
+      B: "National Transmission Power Company",
+      C: "National Transport Planning Council",
+      D: "None of the above"
+    },
+    answer: "A"
+  },
+  {
+    id: 2,
+    text: "Who conducted the exam?",
+    options: {
+      A: "Wipro",
+      B: "TCS",
+      C: "Infosys",
+      D: "Tech Mahindra"
+    },
+    answer: "B"
+  },
+  {
+    id: 3,
+    text: "Which programming language is used for web development?",
+    options: {
+      A: "C++",
+      B: "Java",
+      C: "JavaScript",
+      D: "Python"
+    },
+    answer: "C"
+  },
+  {
+    id: 4,
+    text: "Select the correct HTML tag for inserting a line break.",
+    options: {
+      A: "<br>",
+      B: "<break>",
+      C: "<lb>",
+      D: "<line>"
+    },
+    answer: "A"
+  }
+];
 
-    // Generate Question Palette
-    const questionNav = document.getElementById('question-nav');
-    for (let i = 1; i <= totalQuestions; i++) {
-        const span = document.createElement('span');
-        span.textContent = i;
-        span.addEventListener('click', () => {
-            currentQuestion = i - 1;
-            loadQuestion(currentQuestion);
-        });
-        questionNav.appendChild(span);
+let currentQuestionIndex = 0;
+const userAnswers = {};
+const flaggedQuestions = new Set();
+
+// Timer variables
+let totalTime = 30 * 60; // 30 minutes in seconds
+let timerInterval;
+
+const timerDisplay = document.getElementById("timer");
+const questionContainer = document.getElementById("question-container");
+const questionNav = document.getElementById("question-nav");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const flagBtn = document.getElementById("flagBtn");
+const submitBtn = document.getElementById("submitBtn");
+const resultSection = document.getElementById("resultSection");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const retryBtn = document.getElementById("retryBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+// Initialize exam interface
+function initExam() {
+  currentQuestionIndex = 0;
+  for (const key in userAnswers) delete userAnswers[key];
+  flaggedQuestions.clear();
+  resultSection.style.display = "none";
+  document.querySelector(".container").style.display = "flex";
+  document.querySelector("header").style.display = "block";
+  renderQuestionNav();
+  renderQuestion();
+  totalTime = 30 * 60; // reset timer
+  startTimer();
+}
+
+// Timer countdown
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (totalTime <= 0) {
+      clearInterval(timerInterval);
+      submitExam();
+    } else {
+      totalTime--;
+      let minutes = Math.floor(totalTime / 60);
+      let seconds = totalTime % 60;
+      timerDisplay.textContent = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
+  }, 1000);
+}
 
-    // Timer
-    let timeLeft = 90 * 60; // 90 minutes in seconds
-    const timerDisplay = document.getElementById('timer');
-    function updateTimer() {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerDisplay.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        timeLeft--;
-        if (timeLeft < 0) {
-            alert('Time’s up! Exam submitted.');
-            submitExam();
-        }
-    }
-    setInterval(updateTimer, 1000);
-
-    // Load First Question
-    loadQuestion(currentQuestion);
-
-    // Function to Load a Question
-    function loadQuestion(index) {
-        const questionArea = document.getElementById('question-area');
-        const question = questions[index] || { id: index + 1, text: "Question not available", options: [] };
-        questionArea.innerHTML = `
-            <h3>Question No. ${question.id}</h3>
-            <p>${question.text}</p>
-            ${question.options.map((opt, i) => `
-                <label>
-                    <input type="radio" name="answer" value="${String.fromCharCode(65 + i)}">
-                    ${opt}
-                </label><br>
-            `).join('')}
-            <div class="control-buttons">
-                <button id="mark-review">Mark for Review & Next</button>
-                <button id="clear-response">Clear Response</button>
-                <button id="save-next">Save & Next</button>
-            </div>
-        `;
-
-        // Restore Previous Answer
-        if (answers[index]) {
-            document.querySelectorAll('input[name="answer"]').forEach(radio => {
-                if (radio.value === answers[index]) radio.checked = true;
-            });
-        }
-
-        // Update Palette
-        const navSpans = document.querySelectorAll('#question-nav span');
-        navSpans.forEach(span => span.classList.remove('current'));
-        navSpans[index].classList.add('current');
-        statuses.forEach((status, i) => {
-            navSpans[i].classList.remove('answered', 'not-answered');
-            if (status === 'answered') navSpans[i].classList.add('answered');
-            else if (status === 'visited') navSpans[i].classList.add('not-answered');
-        });
-    }
-
-    // Event Listeners for Buttons
-    document.addEventListener('click', function(event) {
-        if (event.target.id === 'save-next') {
-            const selected = document.querySelector('input[name="answer"]:checked');
-            if (selected) {
-                answers[currentQuestion] = selected.value;
-                statuses[currentQuestion] = 'answered';
-            } else {
-                statuses[currentQuestion] = 'visited';
-            }
-            currentQuestion++;
-            if (currentQuestion < totalQuestions) loadQuestion(currentQuestion);
-            else alert('You have reached the end of the section.');
-        } else if (event.target.id === 'clear-response') {
-            document.querySelectorAll('input[name="answer"]').forEach(input => input.checked = false);
-        } else if (event.target.id === 'mark-review') {
-            statuses[currentQuestion] = 'visited'; // Could add a 'marked' status
-            currentQuestion++;
-            if (currentQuestion < totalQuestions) loadQuestion(currentQuestion);
-            else alert('You have reached the end of the section.');
-        } else if (event.target.id === 'submit-btn') {
-            submitExam();
-        } else if (event.target.id === 'attempt-btn') {
-            // For simplicity, assume Part A is selected and loaded
-            loadQuestion(0);
-        }
+// Render navigation buttons for questions
+function renderQuestionNav() {
+  questionNav.innerHTML = "";
+  questions.forEach((q, index) => {
+    const btn = document.createElement("div");
+    btn.className = "question-number" + (index === currentQuestionIndex ? " active" : "");
+    btn.textContent = q.id;
+    btn.addEventListener("click", () => {
+      currentQuestionIndex = index;
+      renderQuestion();
+      updateNavActive();
     });
+    questionNav.appendChild(btn);
+  });
+}
 
-    // Submit Exam
-    function submitExam() {
-        let score = 0;
-        questions.forEach((q, index) => {
-            if (answers[index] === q.correctAnswer) score += 1;
-        });
-        alert(`Exam submitted! Your score: ${score} out of ${questions.length}`);
-    }
+function updateNavActive() {
+  const navButtons = document.querySelectorAll(".question-number");
+  navButtons.forEach((btn, index) => {
+    btn.classList.toggle("active", index === currentQuestionIndex);
+  });
+}
+
+// Render the current question
+function renderQuestion() {
+  const currentQ = questions[currentQuestionIndex];
+  let html = `<div class="question-text"><strong>Q${currentQ.id}.</strong> ${currentQ.text}</div><ul class="options">`;
+  for (const [key, value] of Object.entries(currentQ.options)) {
+    const checked = userAnswers[currentQ.id] === key ? "checked" : "";
+    html += `<li>
+              <label>
+                <input type="radio" name="option" value="${key}" ${checked}>
+                <span>${key}: ${value}</span>
+              </label>
+            </li>`;
+  }
+  html += "</ul>";
+  questionContainer.innerHTML = html;
+
+  // Attach change event to radio inputs
+  document.querySelectorAll("input[name='option']").forEach((input) => {
+    input.addEventListener("change", (e) => {
+      userAnswers[currentQ.id] = e.target.value;
+    });
+  });
+}
+
+// Next & Previous button events
+nextBtn.addEventListener("click", () => {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    renderQuestion();
+    updateNavActive();
+  }
 });
+prevBtn.addEventListener("click", () => {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion();
+    updateNavActive();
+  }
+});
+
+// Flag button event
+flagBtn.addEventListener("click", () => {
+  const currentId = questions[currentQuestionIndex].id;
+  if (flaggedQuestions.has(currentId)) {
+    flaggedQuestions.delete(currentId);
+    flagBtn.textContent = "Flag";
+    flagBtn.style.backgroundColor = "#f59e0b";
+  } else {
+    flaggedQuestions.add(currentId);
+    flagBtn.textContent = "Flagged";
+    flagBtn.style.backgroundColor = "#dc2626";
+  }
+});
+
+// Submit button event
+submitBtn.addEventListener("click", submitExam);
+
+function submitExam() {
+  clearInterval(timerInterval);
+  // Calculate score
+  let score = 0;
+  questions.forEach((q) => {
+    if (userAnswers[q.id] === q.answer) {
+      score++;
+    }
+  });
+  scoreDisplay.textContent = `Your Score: ${score} / ${questions.length}`;
+  resultSection.style.display = "block";
+  document.querySelector(".container").style.display = "none";
+  document.querySelector("header").style.display = "none";
+}
+
+// Retry button event
+retryBtn.addEventListener("click", initExam);
+
+// Download result event
+downloadBtn.addEventListener("click", () => {
+  let resultText = `Exam Result\nYour Score: ${scoreDisplay.textContent}\n\nDetailed Responses:\n`;
+  questions.forEach((q) => {
+    resultText += `Q${q.id}: Your Answer: ${userAnswers[q.id] || "Not Answered"}, Correct Answer: ${q.answer}\n`;
+  });
+  const blob = new Blob([resultText], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Exam_Result.txt";
+  a.click();
+});
+
+// Start exam on page load
+window.onload = initExam;
